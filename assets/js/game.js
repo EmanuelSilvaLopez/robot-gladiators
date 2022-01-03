@@ -1,3 +1,11 @@
+// START GAME FUNCTIONS
+
+// function to generate a random numeric value
+var randomNumber = function(min, max) {
+  var value = Math.floor(Math.random() * (max - min + 1) + min);
+
+  return value;
+};
 
 // fight function (now with parameter for enemy's name)
 var fight = function(enemy) {
@@ -113,13 +121,6 @@ var endGame = function() {
   }
 }
 
-// function to generate a random numeric value
-var randomNumber = function(min, max) {
-  var value = Math.floor(Math.random() * (max - min + 1) + min);
-
-  return value;
-};
-
 var shop = function() {
   // ask player what theyd like to do.
   var shopOptionPrompt = window.prompt(
@@ -132,26 +133,27 @@ var shop = function() {
     case "refill":
       playerInfo.refillHealth();
       break;
-      case "UPGRADE":
-      case "upgrade":
-        playerInfo.upgradeAttack();
-        break;
-        case "LEAVE":
-        case "leave":
-          window.alert("leaving the store.");
+    case "UPGRADE":
+    case "upgrade":
+      playerInfo.upgradeAttack();
+      break;
+    case "LEAVE":
+    case "leave":
+      window.alert("leaving the store.");
 
-          //do nothing so function will end.
-          break;
+      //do nothing so function will end.
+      break;
+    default:
+      window.alert("You did not pick a valid option. Try again.");
 
-          default:
-            window.alert("You did not pick a valid option. Try again.");
-
-            // call shop() to force player to pick valid option.
-            shop();
-            break;
+      // call shop() to force player to pick valid option.
+      shop();
+      break;
   }
 };
+// END GAME FUNCTIONS
 
+// GAME INFORMATION / VARIABLES
 var playerInfo = {
   name: window.prompt("What is you robot name?"),
   health: 100,
