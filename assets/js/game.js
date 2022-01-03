@@ -154,6 +154,7 @@ var shop = function() {
 // END GAME FUNCTIONS
 
 // GAME INFORMATION / VARIABLES
+// PLAYER INFORMATION
 var playerInfo = {
   name: window.prompt("What is you robot name?"),
   health: 100,
@@ -187,6 +188,7 @@ var playerInfo = {
   }
 };
 
+// ENEMY INFORMATION
 var enemyInfo = [
   {
     name: "Roborto",
@@ -202,5 +204,7 @@ var enemyInfo = [
   }
 ];
 
-//starts the game when page loads
+// END GAME INFORMATION/VARIABLES
+
+// run game
 startGame();
