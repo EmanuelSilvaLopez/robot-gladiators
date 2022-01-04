@@ -136,12 +136,24 @@ var startGame = function() {
 };
 
 var endGame = function() {
-	// if player is still alive, player wins!
-	if (playerInfo.health > 0) {
-		window.alert("Great job, you've survived the game! You now have a score of " + playerInfo.money + ".");
-	} else {
-		window.alert("You've lost your robot in battle.");
-	}
+	window.alert("The game has now ended. Let's see how you did!");
+
+  // Check local storage for highscore, if it's not there, use 0
+  var highScore = localStorage.getItem("highscore");
+  if (highScore === null) {
+    highScore = 0;
+  }
+
+  // if player has more money than the highscore, player has a new highscore!
+  if (playerInfo.money > highScore) {
+    localStorage.setItem("Highscore", playerInfo.money);
+    localStorage.setItem("Name", playerInfo.name);
+
+    alert(playerInfo.name + " now has the high score of " + playerInfo.money + "!");
+  }
+  else {
+    alert(playerInfo.name + " did not beat the high score of " + highScore + ". Maybe next time!");
+  }
 
   var playAgainConfirm = window.confirm("Would you like to play again?");
 
@@ -150,7 +162,7 @@ var endGame = function() {
   } else {
     window.alert('Thank you for playing Robot Gladiators! Come back soon!');
   }
-}
+};
 
 var shop = function() {
   // ask player what theyd like to do.
@@ -160,7 +172,6 @@ var shop = function() {
   shopOptionPrompt = parseInt(shopOptionPrompt);
 
   // use switch to carry out action
-  debugger;
   switch (shopOptionPrompt) {
     case 1:
       playerInfo.refillHealth();
@@ -207,7 +218,7 @@ var playerInfo = {
   },
   refillHealth: function() {
     if (this.money >= 7) {
-      window.alert("Refilling player's health by 20 for 7 Dollars.");
+      window.alert("Refilling player's health by 20 for 7 coins.");
     
     this.health +=20;
     this.money -=7;
@@ -218,7 +229,7 @@ var playerInfo = {
   },
   upgradeAttack: function() {
     if (this.money >= 7) {
-      window.alert("Upgrading player's attack by 6 for 7 dollars.");
+      window.alert("Upgrading player's attack by 6 for 7 coins.");
       this.attack += 6;
       this.money -=7;
     }
